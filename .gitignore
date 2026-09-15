@@ -1,0 +1,22 @@
+# Python virtual environment
+backend/.venv/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Node dependencies
+frontend/node_modules/
+
+# Frontend production build
+frontend/dist/
+
+# Editor and operating-system files
+.vscode/
+.DS_Store
+Thumbs.db
