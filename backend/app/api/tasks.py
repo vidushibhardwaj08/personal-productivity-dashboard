@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException
 from typing import Literal
 from pydantic import BaseModel, Field
 
@@ -29,3 +29,14 @@ def create_task(task: TaskCreate):
         "message":"Task created successfully",
         "task": new_task
     }
+
+@router.get("/{task_id}")
+def get_task(task_id: int):
+    for task in tasks:
+        if task["id"] == task_id:
+            return {"task": task}
+
+    raise HTTPException(
+        status_code=404,
+        detail="Task not found"
+    )
