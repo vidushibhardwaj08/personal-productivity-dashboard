@@ -59,3 +59,20 @@ def update_task(task_id: int, task_update: TaskUpdate):
 
             if task_update.completed is not None:
                 task["completed"] = task_update.completed
+
+@router.delete("/{task_id}")
+def delete_task(task_id: int):
+    for index, task in enumerate(tasks):
+        if task["id"] == task_id:
+
+            deleted_task = tasks.pop(index)
+
+            return {
+                "message": "Task deleted successfully",
+                "task": deleted_task
+            }
+
+    raise HTTPException(
+        status_code=404,
+        detail="Task not found"
+    )
