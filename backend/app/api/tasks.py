@@ -22,7 +22,7 @@ def get_tasks():
 @router.post("/")
 def create_task(task: TaskCreate):
     new_task = {
-        "id": len(tasks)+1,
+        "id": max((task["id"] for task in tasks), default=0) + 1,
         "title":  task.title,
         "priority": task.priority,
         "completed": False
